@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('name1');
-            $table->string('desi1');
-            $table->string('img1');
-            $table->string('name2');
-            $table->string('desi2');
-            $table->string('img2');
-            $table->string('name3');
-            $table->string('desi3');
-            $table->string('img3');
-            $table->string('sicon');
-            $table->string('slink');
+            $table->string('name');
+            $table->string('desi');
+            $table->string('img');
+            $table->string('fb');
+            $table->string('tw');
+            $table->string('li');
+            $table->string('in');
+
             $table->timestamps();
         });
     }
