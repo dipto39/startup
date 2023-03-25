@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('desi');
-            $table->string('img');
-            $table->string('fb');
-            $table->string('tw');
-            $table->string('li');
-            $table->string('in');
+            $table->string('img')->nullable();
+            $table->string('fb')->nullable();
+            $table->string('tw')->nullable();
+            $table->string('li')->nullable();
+            $table->string('in')->nullable();
 
             $table->timestamps();
         });
