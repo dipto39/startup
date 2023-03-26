@@ -333,6 +333,10 @@ h6,
 .service-item .service-icon i {
     transform: rotate(45deg);
 }
+.service-item .service-icon img{
+    height: 20px;
+    transform: rotate(45deg);
+}
 
 .service-item a.btn {
     position: absolute;

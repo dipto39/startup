@@ -4,19 +4,20 @@
         <div class="text-center">{{ $title }}</div>
         <form action="{{ url($url) }}" method="POST" class="p-5" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="id" value="{{(isset($serviceData)) ? $serviceData['idu'] : ""}}">
             <div class="row">
                 <div class="mb-3 ">
-                    <label for="exampleInputName1" class="form-label">Title </label>
-                    <input type="text" name="title" class="form-control" value="{{(isset($blogdata)) ? $blogdata['title'] : ""}}">
-                    @if ($errors->first('title'))
-                    <span class="text-danger">{{ $errors->first('title') }}</span>
+                    <label for="exampleInputName1" class="form-label">Service Name </label>
+                    <input type="text" name="name" class="form-control" value="{{(isset($serviceData)) ? $serviceData['sname'] : ""}}">
+                    @if ($errors->first('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
                 </div>
                 <div class="mb-3 ">
-                    <label for="exampleInputName1" class="form-label">Author </label>
-                    <input type="text" name="auth" class="form-control" value="{{(isset($blogdata)) ? $blogdata['auth'] : ""}}">
-                    @if ($errors->first('auth'))
-                    <span class="text-danger">{{ $errors->first('auth') }}</span>
+                    <label for="exampleInputName1" class="form-label">Service Details </label>
+                    <textarea type="text" name="sd" class="form-control" > {{(isset($serviceData)) ? $serviceData['sdetails'] : ""}}</textarea>
+                    @if ($errors->first('sd'))
+                    <span class="text-danger">{{ $errors->first('sd') }}</span>
                 @endif
                 </div>
                 <div class="mb-3 ">
@@ -26,22 +27,7 @@
                     <span class="text-danger">{{ $errors->first('img') }}</span>
                 @endif
                 </div>
-                <div class="mb-3">
-                    <div class="form-group">
-                        <label for="">Category</label>
-                        <select class="form-select" aria-label="Default select example" name="cata" id="">
-                         @foreach ($category as $item)
-                             <option value="{{$item['id']}}">{{$item['sname']}}</option>
-                         @endforeach
-                          
-                        </select>
-                      </div>
-                </div>
 
-                <div class="mb-3 ">
-                    <label for="exampleInputName1" class="form-label">Details</label>
-                    <textarea name="details" class="form-control" id="exampleFormControlTextarea1" rows="3">{{(isset($blogdata)) ? $blogdata['details'] : ""}}</textarea>
-                </div>
 
             </div>
             <button type="submit" class="btn btn-primary">{{$btn}}</button>

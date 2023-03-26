@@ -8,14 +8,23 @@
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" value="{{(isset($teamdata)) ? $teamdata['name'] : ""}}">
+                    @if ($errors->first('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Designation</label>
                     <input type="text" name="desi" class="form-control" value="{{(isset($teamdata)) ? $teamdata['desi'] : ""}}">
+                    @if ($errors->first('desi'))
+                    <span class="text-danger">{{ $errors->first('desi') }}</span>
+                @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Images</label>
                     <input type="file" name="img" class="form-control">
+                    @if ($errors->first('img'))
+                    <span class="text-danger">{{ $errors->first('img') }}</span>
+                @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Facebook</label>

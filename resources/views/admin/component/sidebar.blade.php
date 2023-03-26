@@ -270,6 +270,13 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="{{route('service')}}" aria-expanded="false" aria-controls="tables">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">service</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="menu-icon mdi mdi-layers-outline"></i>
               <span class="menu-title">Icons</span>

@@ -10,6 +10,7 @@ use App\Models\contactDetails;
 use App\Models\Portfolio;
 use App\Models\pricing;
 use App\Models\carousel;
+use App\Models\service;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -63,7 +64,8 @@ class AdminController extends Controller
    {
       $req->validate([
          'name' => 'required',
-         'desi' => 'required'
+         'desi' => 'required',
+         'img' => 'required'
       ]);
       $team = new Team();
 
@@ -182,7 +184,7 @@ class AdminController extends Controller
       $title = "Add new blog";
       $url = "admin/blogstore";
       $btn = "Add";
-      $category = category::get()->all();
+      $category = service::get()->all();
       $data = compact('title', 'url', 'btn', 'category');
       return view('admin.addblog')->with($data);
    }
@@ -394,9 +396,9 @@ class AdminController extends Controller
    public function addPortfolio(Request $req)
    {
       $req->validate([
-         'hc' => 'required',
-         'pd' => 'required',
-         'wa' => 'required',
+         'hc' => 'required|numeric',
+         'pd' => 'required|numeric',
+         'wa' => 'required|numeric',
       ]);
       $portfolio = new portfolio();
       $portfolio['hc'] = $req['hc'];
@@ -708,6 +710,104 @@ class AdminController extends Controller
    public function carousel_delete($id)
    {
       carousel::find($id)->delete();
+      Alert::success('Delete', 'Success to Delete Blog');
+      return redirect()->back();
+   }
+
+         /// service section start
+   // get service 
+   public function get_service()
+   {
+      $service = service::get()->all();
+      $data = compact('service');
+      return view('admin.service')->with($data);
+   }
+   // add service
+   public function service_add()
+   {
+      $title = "Add new service";
+      $url = "admin/service-store";
+      $btn = "Add";
+      $data = compact('title', 'url', 'btn');
+      return view('admin.service_add')->with($data);
+   }
+   // store service 
+
+   public function service_store(Request $req)
+   {
+
+      $req->validate([
+         'name' => 'required',
+         'sd' => 'required',
+         'img' => 'required',
+      ]);
+      $service = new service();
+
+      $service['sname'] = $req['name'];
+      $service['sdetails'] = $req['sd'];
+      if (!file_exists(public_path('assets/images/services'))) {
+         mkdir(public_path('assets/images/services'), 0777, true);
+      }
+
+
+      if (!empty($req->img)) {
+
+         $image = $req->img;
+         $name = $image->getClientOriginalName();
+         $imagename = time() . "_" . $name;
+         $destination = public_path('assets/images/services');
+         $image->move($destination, $imagename);
+         $service['simg'] = 'assets/images/services/' . $imagename;
+      }
+
+      $service->save();
+      return redirect()->route('service');
+   }
+   // get update 
+   public function service_edit($id)
+   {
+      $title = "Update service";
+      $url = "admin/service-update";
+      $btn = "Update";
+      $serviceData = service::find($id);
+      // echo "<pre>";
+      // print_r($serviceData);
+      // die();
+      $data = compact('title', 'url', 'btn', 'serviceData');
+      return view('admin.service_add')->with($data);
+   }
+   // update service
+   public function service_update(Request $req)
+   {
+      $req->validate([
+         'name' => 'required',
+         'sd' => 'required'
+      ]);
+      $service = service::find($req->id);
+
+      $service['sname'] = $req['name'];
+      $service['sdetails'] = $req['sd'];
+      if (!file_exists(public_path('assets/images/services'))) {
+         mkdir(public_path('assets/images/services'), 0777, true);
+      }
+
+
+      if (!empty($req->img)) {
+
+         $image = $req->img;
+         $name = $image->getClientOriginalName();
+         $imagename = time() . "_" . $name;
+         $destination = public_path('assets/images/services');
+         $image->move($destination, $imagename);
+         $service['simg'] = 'assets/images/services/' . $imagename;
+      }
+      $service->update();
+      return redirect()->route('service');
+   }
+   // delete service
+   public function service_delete($id)
+   {
+      service::find($id)->delete();
       Alert::success('Delete', 'Success to Delete Blog');
       return redirect()->back();
    }

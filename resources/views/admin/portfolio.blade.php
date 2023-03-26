@@ -4,22 +4,34 @@
         <div class="text-center">{{ $title }}</div>
         <form action="{{ url($url) }}" method="POST" class="p-5" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="id" value="{{(isset($portfolio)) ? $portfolio[0]['id'] : ""}}">
+            <input type="hidden" name="id" value="{{ isset($portfolio) ? $portfolio[0]['id'] : '' }}">
             <div class="row">
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Happy Clients</label>
-                    <input type="text" name="hc" class="form-control" value="{{(isset($portfolio)) ? $portfolio[0]['hc'] : ""}}">
+                    <input type="text" name="hc" class="form-control"
+                        value="{{ isset($portfolio) ? $portfolio[0]['hc'] : '' }}">
+                    @if ($errors->first('hc'))
+                        <span class="text-danger">{{ $errors->first('hc') }}</span>
+                    @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Projects Done</label>
-                    <input type="text" name="pd" class="form-control" value="{{(isset($portfolio)) ? $portfolio[0]['pd'] : ""}}">
+                    <input type="text" name="pd" class="form-control"
+                        value="{{ isset($portfolio) ? $portfolio[0]['pd'] : '' }}">
+                    @if ($errors->first('pd'))
+                        <span class="text-danger">{{ $errors->first('pd') }}</span>
+                    @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Win Award</label>
-                    <input type="text" name="wa" class="form-control" value="{{(isset($portfolio)) ? $portfolio[0]['wa'] : ""}}">
+                    <input type="text" name="wa" class="form-control"
+                        value="{{ isset($portfolio) ? $portfolio[0]['wa'] : '' }}">
+                    @if ($errors->first('wa'))
+                        <span class="text-danger">{{ $errors->first('wa') }}</span>
+                    @endif
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">{{$btn}}</button>
+            <button type="submit" class="btn btn-primary">{{ $btn }}</button>
         </form>
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">

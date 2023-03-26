@@ -175,10 +175,6 @@
     </div>
     <!-- About End -->
 
-@php
-    $a=[1,"hi"];
-    print_r($a);
-@endphp
     <!-- Features Start -->
     <div class="container-fluid py-5 wow fadeInUp d-none" data-wow-delay="0.1s">
         <div class="container py-5">
@@ -247,6 +243,24 @@
                 <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
             </div>
             <div class="row g-5">
+                @if (count($serviceData) > 0)
+                @foreach ($serviceData as $item)
+                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                    <div
+                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon">
+                            <img src="{{$item['simg']}}" alt="">
+                        </div>
+                        <h4 class="mb-3">{{$item['sname']}}</h4>
+                        <p class="m-0">{{$item['sdetails']}}</p>
+                        <a class="btn btn-lg btn-primary rounded" href="">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+
+                @else
                 <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div
                         class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
@@ -326,6 +340,8 @@
                         <h2 class="text-white mb-0">+012 345 6789</h2>
                     </div>
                 </div>
+                @endif
+
             </div>
         </div>
     </div>
@@ -523,10 +539,14 @@
                                 @endif
                                 <div class="col-12">
                                     <select name="service" class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
+                                        @if (count($serviceData) > 0)
+                                        @foreach ($serviceData as $item)
+                                        <option value="{{$item['id']}}">{{$item['sname']}}</option>
+                                    @endforeach
+                                        @else
+                                            <option value="">service 1</option>
+                                        @endif
+                                       
                                     </select>
                                 </div>
                                 <div class="col-12">

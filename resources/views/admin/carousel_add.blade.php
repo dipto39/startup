@@ -9,14 +9,23 @@
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Main Heading</label>
                     <input type="text" name="mh" class="form-control" value="{{(isset($carouselData)) ? $carouselData['h1'] : ""}}">
+                    @if ($errors->first('mh'))
+                    <span class="text-danger">{{ $errors->first('mh') }}</span>
+                @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label"> Sub Heading </label>
                     <input type="text" name="sh" class="form-control" value="{{(isset($carouselData)) ? $carouselData['h2'] : ""}}">
+                    @if ($errors->first('sh'))
+                    <span class="text-danger">{{ $errors->first('sh') }}</span>
+                @endif
                 </div>
                 <div class="mb-3 ">
                     <label for="exampleInputName1" class="form-label">Background Image</label>
                     <input type="file" name="img" class="form-control" >
+                    @if ($errors->first('img'))
+                    <span class="text-danger">{{ $errors->first('img') }}</span>
+                @endif
                 </div>
 
             </div>

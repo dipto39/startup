@@ -10,6 +10,7 @@ use App\Models\Portfolio;
 use App\Models\pricing;
 use App\Models\Team;
 use App\Models\carousel;
+use App\Models\service;
 use App\Models\test;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -26,7 +27,8 @@ class Uicontroller extends Controller
       $claint = claint::get()->all();
       $pricing = pricing::orderBy('amount')->get()->all();
       $carousel = carousel::get()->all();
-      $data = compact('team','blog','contact','portfolio','claint','pricing','carousel');
+      $serviceData = service::get()->all();
+      $data = compact('team','blog','contact','portfolio','claint','pricing','carousel','serviceData');
       return view('welcome')->with($data);
    }
   // show about page

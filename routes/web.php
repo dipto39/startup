@@ -111,3 +111,15 @@ Route::get('admin/carousel-edit/{id}',[AdminController::class,'carousel_edit'])-
 Route::post('admin/carousel-update',[AdminController::class,'carousel_update'])->name('carousel.update');
 // // delete carousel 
 Route::get('admin/carousel-delete/{id}',[AdminController::class,'carousel_delete']);
+
+// route for service 
+// get service
+Route::get('admin/service',[AdminController::class,'get_service'])->name('service');
+// // add service 
+Route::get('admin/new-service',[AdminController::class,'service_add'])->name('service.add');
+Route::post('admin/service-store',[AdminController::class,'service_store'])->name('service.store');
+// // update service
+Route::get('admin/service-edit/{id}',[AdminController::class,'service_edit'])->name('service.edit');
+Route::post('admin/service-update',[AdminController::class,'service_update'])->name('service.update');
+// // delete service 
+Route::get('admin/service-delete/{id}',[AdminController::class,'service_delete']);
